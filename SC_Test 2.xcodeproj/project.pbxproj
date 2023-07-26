@@ -15,6 +15,7 @@
 		A595EF382A6ED9D300EA0491 /* LocationRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A595EF372A6ED9D300EA0491 /* LocationRequestView.swift */; };
 		A595EF3A2A6EDA6E00EA0491 /* Shot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A595EF392A6EDA6E00EA0491 /* Shot.swift */; };
 		A595EF3C2A6EDB4F00EA0491 /* Shots.swift in Sources */ = {isa = PBXBuildFile; fileRef = A595EF3B2A6EDB4F00EA0491 /* Shots.swift */; };
+		A595EF682A71839900EA0491 /* ShotHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A595EF672A71839900EA0491 /* ShotHistoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		A595EF372A6ED9D300EA0491 /* LocationRequestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationRequestView.swift; sourceTree = "<group>"; };
 		A595EF392A6EDA6E00EA0491 /* Shot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shot.swift; sourceTree = "<group>"; };
 		A595EF3B2A6EDB4F00EA0491 /* Shots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shots.swift; sourceTree = "<group>"; };
+		A595EF672A71839900EA0491 /* ShotHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotHistoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			children = (
 				A595EF252A6ED7BE00EA0491 /* SC_Test_2App.swift */,
 				A595EF272A6ED7BE00EA0491 /* ContentView.swift */,
+				A595EF672A71839900EA0491 /* ShotHistoryView.swift */,
 				A595EF392A6EDA6E00EA0491 /* Shot.swift */,
 				A595EF3B2A6EDB4F00EA0491 /* Shots.swift */,
 				A595EF332A6ED7D700EA0491 /* LocationManager.swift */,
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A595EF682A71839900EA0491 /* ShotHistoryView.swift in Sources */,
 				A595EF282A6ED7BE00EA0491 /* ContentView.swift in Sources */,
 				A595EF3C2A6EDB4F00EA0491 /* Shots.swift in Sources */,
 				A595EF382A6ED9D300EA0491 /* LocationRequestView.swift in Sources */,

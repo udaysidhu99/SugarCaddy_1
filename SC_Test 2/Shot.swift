@@ -11,6 +11,7 @@ struct Shot: Identifiable, Codable {
     var id = UUID()
     var startLat = 0.0
     var startLong = 0.0
+    var date = Date.now
     var endLat = 0.0
     var endLong = 0.0
     var distance = 0.0

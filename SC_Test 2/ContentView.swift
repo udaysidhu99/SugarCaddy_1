@@ -45,6 +45,7 @@ struct ContentView: View {
         }
     }
     @State var displayAverage = 0.0
+    @State var isShowingHistory = false
     let clubs = ["1W","2W","3W","3","4","5","6","7","8","9","PW","SW"]
     func getLocation() -> CLLocation{
         if let location = locationManager.userLocation{
@@ -60,22 +61,24 @@ struct ContentView: View {
         let startLoc = getLocation()
         shots.shots[shots.shots.endIndex - 1].startLat = startLoc.coordinate.latitude
         shots.shots[shots.shots.endIndex - 1].startLong = startLoc.coordinate.longitude
-      
+        
     }
     func setEndLoc(){
         let endLoc = getLocation()
         let startLoc = CLLocation(latitude: shots.shots.last!.startLat, longitude: shots.shots.last!.startLong)
+        shots.shots[shots.shots.endIndex - 1].date = Date.now
         shots.shots[shots.shots.endIndex - 1].endLat = endLoc.coordinate.latitude
         shots.shots[shots.shots.endIndex - 1].endLong = endLoc.coordinate.longitude
-        shots.shots[shots.shots.endIndex - 1].distance = startLoc.distance(from: endLoc)
+        shots.shots[shots.shots.endIndex - 1].endLong = endLoc.coordinate.longitude
+        shots.shots[shots.shots.endIndex - 1].distance = (startLoc.distance(from: endLoc)) * 1.094
         shots.shots[shots.shots.endIndex - 1].club = club
-//        print("Start Coordinates")
-//        print(shots.shots[shots.shots.endIndex - 1].startLoc.coordinate.latitude)
-//        print(shots.shots[shots.shots.endIndex - 1].startLoc.coordinate.longitude)
-//        print("End Coordinates")
-//        print(shots.shots[shots.shots.endIndex - 1].endLoc.coordinate.latitude)
-//        print(shots.shots[shots.shots.endIndex - 1].endLoc.coordinate.longitude)
-    
+        //        print("Start Coordinates")
+        //        print(shots.shots[shots.shots.endIndex - 1].startLoc.coordinate.latitude)
+        //        print(shots.shots[shots.shots.endIndex - 1].startLoc.coordinate.longitude)
+        //        print("End Coordinates")
+        //        print(shots.shots[shots.shots.endIndex - 1].endLoc.coordinate.latitude)
+        //        print(shots.shots[shots.shots.endIndex - 1].endLoc.coordinate.longitude)
+        
     }
     func getAvg(parClub:String) {
         var avg = 0.0
@@ -95,73 +98,89 @@ struct ContentView: View {
         
     }
     var body: some View {
-                if locationManager.userLocation == nil{
-            LocationRequestView()
-        }
-        else{
-            Spacer()
+        NavigationView{
             VStack{
-                VStack(spacing: 0){
-                    Text(displayAverage == 0.0 ? " ":"Average for \(clubDisplayName): \(displayAverage, specifier: "%.2f")").font(.headline)
-                    Picker("Club Selection", selection: $club){
-                        ForEach(clubs, id: \.self){club in
-                            Text(club)
-                        }
-                    }
-                }
-                .pickerStyle(.wheel)
-                .onChange(of: club) { newValue in
-                    getAvg(parClub: club)
-                }
-                }
-                if let currShot = shots.shots.last{
-                    VStack{
-                        Text("Shot Distance: ")
-                        if !isPressed{
-                            Text("\(currShot.distance, specifier: "%.2f") m")
-                                .font(.system(size: 44))
-                        }
-                        else{
-                            Text("In progress...")
-                                .font(.system(size: 44))
-                        }
-                       
-                        Text(currShot.endLat != 0.0 ? "Club used: \(currShot.club)" : "  ")
-                        
-                        
-                         
-                    }
+                if locationManager.userLocation == nil{
+                    LocationRequestView()
                 }
                 else{
-                    Text("Last Shot Distance: ")
-                    Text("\(0, specifier: "%.2f") m")
-                        .font(.system(size: 44))
-                }
-                
-                Spacer()
-                Button {
-                    if !isPressed{
-                        addShot()
-                        setStartLoc()
+                    VStack(spacing: 0){
+                        Text(displayAverage == 0.0 ? " ":"Average for \(clubDisplayName): \(displayAverage, specifier: "%.2f") yd").font(.headline)
+                        Picker("Club Selection", selection: $club){
+                            ForEach(clubs, id: \.self){club in
+                                Text(club)
+                            }
+                        }
+                    }
+                    .pickerStyle(.wheel)
+                    .onChange(of: club) { newValue in
+                        getAvg(parClub: club)
+                    }
+                    
+                    if let currShot = shots.shots.last{
+                        
+                        VStack{
+                            Text("Shot Distance: ")
+                            if !isPressed{
+                                Text("\(currShot.distance, specifier: "%.2f") yards")
+                                    .font(.system(size: 44))
+                            }
+                            else{
+                                Text("In progress...")
+                                    .font(.system(size: 44))
+                            }
+                            Text(currShot.endLat != 0.0 ? "Club used: \(currShot.club)" : "  ")
+                        }
                     }
                     else{
-                        setEndLoc()
+                        Text("Last Shot Distance: ")
+                        Text("\(0, specifier: "%.2f") m")
+                            .font(.system(size: 44))
                     }
-                    isPressed.toggle()
-                } label: {
-                    Text( isPressed ? "End Shot" : "Begin Shot")
-                        .padding()
-                        .font(.headline)
-                        .foregroundColor(Color.white)
-                        .frame(width: UIScreen.main.bounds.width)
-                                            .padding(.horizontal, -32)
-                                            .background(Color(.systemBlue))
-                                            .clipShape(Capsule())
+                    
+                    Button {
+                        if !isPressed{
+                            addShot()
+                            setStartLoc()
+                        }
+                        else{
+                            setEndLoc()
+                            getAvg(parClub: club)
+                        }
+                        isPressed.toggle()
+                    } label: {
+                        Text( isPressed ? "End Shot" : "Begin Shot")
+                            .padding()
+                            .font(.headline)
+                            .foregroundColor(Color.white)
+                            .frame(width: UIScreen.main.bounds.width)
+                            .padding(.horizontal, -32)
+                            .background(Color(.systemBlue))
+                            .clipShape(Capsule())
+                    }
+                    
                 }
+                
             }
-        Spacer()
+                .toolbar {
+                Button {
+                    isShowingHistory = true
+                } label: {
+                    HStack{
+                        Text("History")
+                        Image(systemName: "list.bullet")
+                    }
+                }
+                
+            }
+                .sheet(isPresented: $isShowingHistory) {
+                    ShotHistoryView(shots: shots)
+                }
+        }
+        
     }
 }
+
 
 
 
