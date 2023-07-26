@@ -7,10 +7,12 @@
 
 import Foundation
 import CoreLocation
-struct Shot: Identifiable {
+struct Shot: Identifiable, Codable {
     var id = UUID()
-    var startLoc = CLLocation(latitude: 0, longitude: 0)
-    var endLoc = CLLocation(latitude: 0, longitude: 0)
+    var startLat = 0.0
+    var startLong = 0.0
+    var endLat = 0.0
+    var endLong = 0.0
     var distance = 0.0
     var club = "1W"
 }

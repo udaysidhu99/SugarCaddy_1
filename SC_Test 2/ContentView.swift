@@ -26,11 +26,17 @@ struct ContentView: View {
         shots.shots.append(shot)
     }
     func setStartLoc(){
-        shots.shots[shots.shots.endIndex - 1].startLoc = getLocation()
+        let startLoc = getLocation()
+        shots.shots[shots.shots.endIndex - 1].startLat = startLoc.coordinate.latitude
+        shots.shots[shots.shots.endIndex - 1].startLong = startLoc.coordinate.longitude
+      
     }
     func setEndLoc(){
-        shots.shots[shots.shots.endIndex - 1].endLoc = getLocation()
-        shots.shots[shots.shots.endIndex - 1].distance = shots.shots[shots.shots.endIndex - 1].startLoc.distance(from: shots.shots[shots.shots.endIndex - 1].endLoc)
+        let endLoc = getLocation()
+        let startLoc = CLLocation(latitude: shots.shots.last!.startLat, longitude: shots.shots.last!.startLong)
+        shots.shots[shots.shots.endIndex - 1].endLat = endLoc.coordinate.latitude
+        shots.shots[shots.shots.endIndex - 1].endLong = endLoc.coordinate.longitude
+        shots.shots[shots.shots.endIndex - 1].distance = startLoc.distance(from: endLoc)
         shots.shots[shots.shots.endIndex - 1].club = club
 //        print("Start Coordinates")
 //        print(shots.shots[shots.shots.endIndex - 1].startLoc.coordinate.latitude)
@@ -68,7 +74,7 @@ struct ContentView: View {
                                                             .font(.system(size: 44))
                         }
                        
-                        Text(currShot.endLoc.coordinate.latitude != 0.0 ? "Club used: \(currShot.club)" : "  ")
+                        Text(currShot.endLat != 0.0 ? "Club used: \(currShot.club)" : "  ")
                         
                         
                          
