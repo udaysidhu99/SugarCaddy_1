@@ -14,6 +14,37 @@ struct ContentView: View {
     @ObservedObject var locationManager = LocationManager.shared
     @State var isPressed = false
     @State var club = "1W"
+    var clubDisplayName: String{
+        switch club{
+        case "1W":
+            return "Driver"
+        case "2W":
+            return "2 Wood"
+        case "3W":
+            return "3 Wood"
+        case "3":
+            return "3 Iron"
+        case "4":
+            return "4 Iron"
+        case "5":
+            return "5 Iron"
+        case "6":
+            return "6 Iron"
+        case "7":
+            return "7 Iron"
+        case "8":
+            return "8 Iron"
+        case "9":
+            return "9 Iron"
+        case "PW":
+            return "PW"
+        case "SW":
+            return "SW"
+        default:
+            return " "
+        }
+    }
+    @State var displayAverage = 0.0
     let clubs = ["1W","2W","3W","3","4","5","6","7","8","9","PW","SW"]
     func getLocation() -> CLLocation{
         if let location = locationManager.userLocation{
@@ -46,32 +77,53 @@ struct ContentView: View {
 //        print(shots.shots[shots.shots.endIndex - 1].endLoc.coordinate.longitude)
     
     }
-    
+    func getAvg(parClub:String) {
+        var avg = 0.0
+        var counter = 0
+        for i in shots.shots{
+            if i.club == parClub{
+                avg = avg + i.distance
+                counter = counter + 1
+            }
+        }
+        if counter == 0{
+            self.displayAverage = 0
+        }
+        else{
+            self.displayAverage = avg/Double(counter)
+        }
+        
+    }
     var body: some View {
                 if locationManager.userLocation == nil{
             LocationRequestView()
         }
         else{
+            Spacer()
             VStack{
-                Spacer()
                 VStack(spacing: 0){
-                    Text("Club Selection").font(.headline)
+                    Text(displayAverage == 0.0 ? " ":"Average for \(clubDisplayName): \(displayAverage, specifier: "%.2f")").font(.headline)
                     Picker("Club Selection", selection: $club){
-                        ForEach(clubs, id: \.self){
-                            Text($0)
+                        ForEach(clubs, id: \.self){club in
+                            Text(club)
                         }
                     }
-                }.pickerStyle(.wheel)
+                }
+                .pickerStyle(.wheel)
+                .onChange(of: club) { newValue in
+                    getAvg(parClub: club)
+                }
+                }
                 if let currShot = shots.shots.last{
                     VStack{
-                        Text("Last Shot Distance: ")
+                        Text("Shot Distance: ")
                         if !isPressed{
                             Text("\(currShot.distance, specifier: "%.2f") m")
                                 .font(.system(size: 44))
                         }
                         else{
                             Text("In progress...")
-                                                            .font(.system(size: 44))
+                                .font(.system(size: 44))
                         }
                        
                         Text(currShot.endLat != 0.0 ? "Club used: \(currShot.club)" : "  ")
@@ -84,7 +136,6 @@ struct ContentView: View {
                     Text("Last Shot Distance: ")
                     Text("\(0, specifier: "%.2f") m")
                         .font(.system(size: 44))
-                    
                 }
                 
                 Spacer()
@@ -107,12 +158,11 @@ struct ContentView: View {
                                             .background(Color(.systemBlue))
                                             .clipShape(Capsule())
                 }
-                
-                Spacer()
             }
-        }
+        Spacer()
     }
 }
+
 
 
 struct ContentView_Previews: PreviewProvider {
