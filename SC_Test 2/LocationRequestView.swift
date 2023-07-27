@@ -9,7 +9,9 @@ import SwiftUI
 
 struct LocationRequestView: View {
     var body: some View {
+        
         VStack{
+            Spacer()
             Text("Please provide location permission")
             Button {
                 LocationManager.shared.requestLocation()
@@ -28,14 +30,15 @@ struct LocationRequestView: View {
             
             
             
-            
-            
+        }.background(.white)
+
         }
     }
+    
     
     struct LocationRequestView_Previews: PreviewProvider {
         static var previews: some View {
             LocationRequestView()
         }
     }
-}
+

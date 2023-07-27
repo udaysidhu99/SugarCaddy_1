@@ -99,75 +99,77 @@ struct ContentView: View {
                     LocationRequestView()
                 }
                 else{
-                    VStack(spacing: 0){
-                        Text(displayAverage == 0.0 ? " ":"Average for \(clubDisplayName): \(displayAverage, specifier: "%.2f") yd").font(.headline)
-                        Picker("Club Selection", selection: $club){
-                            ForEach(clubs, id: \.self){club in
-                                Text(club)
+                    VStack{
+                        VStack(spacing: 0){
+                            Text(displayAverage == 0.0 ? " ":"Average for \(clubDisplayName): \(displayAverage, specifier: "%.2f") yd").font(.headline)
+                            Picker("Club Selection", selection: $club){
+                                ForEach(clubs, id: \.self){club in
+                                    Text(club)
+                                }
                             }
                         }
-                    }
-                    .pickerStyle(.wheel)
-                    .onChange(of: club) { newValue in
-                        getAvg(parClub: club)
-                    }
-                    
-                    if let currShot = shots.shots.first{
-                        
-                        VStack{
-                            Text("Shot Distance: ")
-                            if !isPressed{
-                                Text("\(currShot.distance, specifier: "%.2f") yards")
-                                    .font(.system(size: 44))
-                            }
-                            else{
-                                Text("In progress...")
-                                    .font(.system(size: 44))
-                            }
-                            Text(currShot.endLat != 0.0 ? "Club used: \(currShot.club)" : "  ")
-                        }
-                    }
-                    else{
-                        Text("Last Shot Distance: ")
-                        Text("\(0, specifier: "%.2f") m")
-                            .font(.system(size: 44))
-                    }
-                    
-                    Button {
-                        if !isPressed{
-                            addShot()
-                            setStartLoc()
-                        }
-                        else{
-                            setEndLoc()
+                        .pickerStyle(.wheel)
+                        .onChange(of: club) { newValue in
                             getAvg(parClub: club)
                         }
-                        isPressed.toggle()
-                    } label: {
-                        Text( isPressed ? "End Shot" : "Begin Shot")
-                            .padding()
-                            .font(.headline)
-                            .foregroundColor(Color.white)
-                            .frame(width: UIScreen.main.bounds.width)
-                            .padding(.horizontal, -32)
-                            .background(Color(.systemBlue))
-                            .clipShape(Capsule())
+                        
+                        if let currShot = shots.shots.first{
+                            
+                            VStack{
+                                Text("Shot Distance: ")
+                                if !isPressed{
+                                    Text("\(currShot.distance, specifier: "%.2f") yards")
+                                        .font(.system(size: 44))
+                                }
+                                else{
+                                    Text("In progress...")
+                                        .font(.system(size: 44))
+                                }
+                                Text(currShot.endLat != 0.0 ? "Club used: \(currShot.club)" : "  ")
+                            }
+                        }
+                        else{
+                            Text("Last Shot Distance: ")
+                            Text("\(0, specifier: "%.2f") m")
+                                .font(.system(size: 44))
+                        }
+                        
+                        Button {
+                            if !isPressed{
+                                addShot()
+                                setStartLoc()
+                            }
+                            else{
+                                setEndLoc()
+                                getAvg(parClub: club)
+                            }
+                            isPressed.toggle()
+                        } label: {
+                            Text( isPressed ? "End Shot" : "Begin Shot")
+                                .padding()
+                                .font(.headline)
+                                .foregroundColor(Color.white)
+                                .frame(width: UIScreen.main.bounds.width)
+                                .padding(.horizontal, -32)
+                                .background(Color(.systemBlue))
+                                .clipShape(Capsule())
+                        }
+                        
+                    }.toolbar {
+                        Button {
+                            isShowingHistory = true
+                        } label: {
+                            HStack{
+                                Text("History")
+                                Image(systemName: "list.bullet")
+                            }
+                        }
+                        
                     }
-                    
                 }
                 
             }
-            .toolbar {
-                Button {
-                    isShowingHistory = true
-                } label: {
-                    HStack{
-                        Text("History")
-                        Image(systemName: "list.bullet")
-                    }
-                }
-                
-            }
+            
             .sheet(isPresented: $isShowingHistory, onDismiss: {
                 getAvg(parClub: club)
             }, content: {
