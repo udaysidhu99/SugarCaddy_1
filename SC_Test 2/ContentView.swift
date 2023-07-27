@@ -55,29 +55,24 @@ struct ContentView: View {
     }
     func addShot(){
         let shot = Shot()
-        shots.shots.append(shot)
+        shots.shots.insert(shot, at: 0)
     }
     func setStartLoc(){
         let startLoc = getLocation()
-        shots.shots[shots.shots.endIndex - 1].startLat = startLoc.coordinate.latitude
-        shots.shots[shots.shots.endIndex - 1].startLong = startLoc.coordinate.longitude
+        shots.shots[0].startLat = startLoc.coordinate.latitude
+        shots.shots[0].startLong = startLoc.coordinate.longitude
         
     }
     func setEndLoc(){
         let endLoc = getLocation()
-        let startLoc = CLLocation(latitude: shots.shots.last!.startLat, longitude: shots.shots.last!.startLong)
-        shots.shots[shots.shots.endIndex - 1].date = Date.now
-        shots.shots[shots.shots.endIndex - 1].endLat = endLoc.coordinate.latitude
-        shots.shots[shots.shots.endIndex - 1].endLong = endLoc.coordinate.longitude
-        shots.shots[shots.shots.endIndex - 1].endLong = endLoc.coordinate.longitude
-        shots.shots[shots.shots.endIndex - 1].distance = (startLoc.distance(from: endLoc)) * 1.094
-        shots.shots[shots.shots.endIndex - 1].club = club
-        //        print("Start Coordinates")
-        //        print(shots.shots[shots.shots.endIndex - 1].startLoc.coordinate.latitude)
-        //        print(shots.shots[shots.shots.endIndex - 1].startLoc.coordinate.longitude)
-        //        print("End Coordinates")
-        //        print(shots.shots[shots.shots.endIndex - 1].endLoc.coordinate.latitude)
-        //        print(shots.shots[shots.shots.endIndex - 1].endLoc.coordinate.longitude)
+        let startLoc = CLLocation(latitude: shots.shots[0].startLat, longitude: shots.shots[0].startLong)
+        shots.shots[0].date = Date.now
+        shots.shots[0].endLat = endLoc.coordinate.latitude
+        shots.shots[0].endLong = endLoc.coordinate.longitude
+        shots.shots[0].endLong = endLoc.coordinate.longitude
+        shots.shots[0].distance = (startLoc.distance(from: endLoc)) * 1.094
+        shots.shots[0].club = club
+        
         
     }
     func getAvg(parClub:String) {
@@ -117,7 +112,7 @@ struct ContentView: View {
                         getAvg(parClub: club)
                     }
                     
-                    if let currShot = shots.shots.last{
+                    if let currShot = shots.shots.first{
                         
                         VStack{
                             Text("Shot Distance: ")
@@ -162,7 +157,7 @@ struct ContentView: View {
                 }
                 
             }
-                .toolbar {
+            .toolbar {
                 Button {
                     isShowingHistory = true
                 } label: {
@@ -173,13 +168,16 @@ struct ContentView: View {
                 }
                 
             }
-                .sheet(isPresented: $isShowingHistory) {
-                    ShotHistoryView(shots: shots)
-                }
+            .sheet(isPresented: $isShowingHistory, onDismiss: {
+                getAvg(parClub: club)
+            }, content: {
+                ShotHistoryView(shots: shots)
+            })
         }
-        
     }
+    
 }
+
 
 
 

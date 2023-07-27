@@ -19,26 +19,29 @@ struct ShotHistoryView: View {
                 ForEach(shots.shots){shot in
                     HStack{
                         VStack(alignment: .leading){
-                            Text("Club: \(shot.club)")
+                            Text("Club: \(shot.clubDisplayName)").bold()
                             Text("Distance \(shot.distance, specifier: "%.2f" )")
                         }
                         Spacer()
                         VStack(alignment: .trailing){
-                            Text(shot.date, format: .dateTime.day().month(.abbreviated))
                             Text(shot.date, format: .dateTime.minute().hour())
-                        }
+                            Text(shot.date, format: .dateTime.day().month(.abbreviated))
+                            
+                        }.foregroundColor(.secondary)
                         
                     }
-                }.onDelete(perform: removeItems)
-            }.padding(.top)
+                }
+                .onDelete(perform: removeItems)
+            }
+            .padding(.top)
             .navigationTitle("Shot History")
             .toolbar {
                 Button {
                     dismiss()
                 } label: {
-                    Image(systemName: "checkmark.square")
+                    Text("Done")
                 }
-
+                
             }
         }
     }
