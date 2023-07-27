@@ -95,12 +95,13 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             ZStack{
-                Color.darkBackground.ignoresSafeArea()
+                BackgroundView()
                     if locationManager.userLocation == nil{
                         LocationRequestView()
                     }
                     else{
                         VStack{
+            
                             Image("SugarCaddyLogo").resizable().scaledToFit().frame(width: 200).padding(.bottom)
                             VStack(spacing: 0){
                                 Picker("Club Selection", selection: $club){
@@ -108,8 +109,9 @@ struct ContentView: View {
                                         Text(club).foregroundColor(.whiteForeground)
                                     }
                                 }
-                                Text(displayAverage == 0.0 ? " ":"\(clubDisplayName) Average: \(displayAverage, specifier: "%.1f") yd")
+                                Text(displayAverage == 0.0 ? "Average: N/A":"\(clubDisplayName) Average: \(displayAverage, specifier: "%.1f") yd")
                                     .font(.headline).foregroundColor(.whiteForeground)
+                                    .padding(.top,70)
                                     .padding(.bottom)
                             }
                             .pickerStyle(.wheel)
@@ -121,7 +123,7 @@ struct ContentView: View {
                                 
                                 VStack{
                                     Text("Shot Distance: ")
-                                        .foregroundColor(.lightForeground)
+                                        .foregroundColor(.lightForeground).padding(.bottom, 5)
                                     if !isPressed{
                                         HStack{
                                             Text("\(currShot.distance, specifier: "%.1f")")
@@ -137,7 +139,7 @@ struct ContentView: View {
                                 }.foregroundColor(.whiteForeground)
                             }
                             else{
-                                Text("Shot Distance: ")
+                                Text("Shot Distance: ").padding(.bottom,5)
                                 HStack(){
                                     
                                     Text("\(0, specifier: "%.1f")")
@@ -165,7 +167,7 @@ struct ContentView: View {
                                     .padding(.horizontal, -32)
                                     .background(.lightForeground)
                                     .clipShape(Capsule())
-                            }
+                            }.padding(.bottom, 20)
                             
                         }.toolbar {
                             Button {

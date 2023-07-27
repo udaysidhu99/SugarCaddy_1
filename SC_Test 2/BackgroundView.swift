@@ -9,20 +9,22 @@ import SwiftUI
 
 struct BackgroundView: View {
     var body: some View {
-        ZStack{
-            Color.darkBackground.ignoresSafeArea()
-            VStack{
-                Spacer()
+        GeometryReader{geo in
+            ZStack{
+                Color.darkBackground.ignoresSafeArea()
                 VStack{
-                    
-                }
-                .frame(height: 300)
-                .frame(maxWidth: .infinity)
-                .background(.thinMaterial)
-                .cornerRadius(40)
-            }.ignoresSafeArea()
-            
-            
+                    Spacer()
+                    VStack{
+                        
+                    }
+                    .frame(height: geo.size.height / 2)
+                    .frame(maxWidth: .infinity)
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(40)
+                }.ignoresSafeArea()
+                
+                
+            }
         }
     }
 }
