@@ -14,36 +14,42 @@ struct ShotHistoryView: View {
         shots.shots.remove(atOffsets: offsets)
     }
     var body: some View {
-        NavigationView {
-            List{
-                ForEach(shots.shots){shot in
-                    HStack{
-                        VStack(alignment: .leading){
-                            Text("Club: \(shot.clubDisplayName)").bold()
-                            Text("Distance \(shot.distance, specifier: "%.2f" )")
+       
+            NavigationView {
+                ZStack{
+                           Color.darkBackground.ignoresSafeArea()
+                List{
+                    ForEach(shots.shots){shot in
+                        HStack{
+                            VStack(alignment: .leading){
+                                Text("Club: \(shot.clubDisplayName)").bold()
+                                Text("Distance \(shot.distance, specifier: "%.2f" )")
+                            }
+                            Spacer()
+                            VStack(alignment: .trailing){
+                                Text(shot.date, format: .dateTime.minute().hour())
+                                Text(shot.date, format: .dateTime.day().month(.abbreviated))
+                                
+                            }.foregroundColor(.secondary)
                         }
-                        Spacer()
-                        VStack(alignment: .trailing){
-                            Text(shot.date, format: .dateTime.minute().hour())
-                            Text(shot.date, format: .dateTime.day().month(.abbreviated))
-                            
-                        }.foregroundColor(.secondary)
-                        
+                    }.onDelete(perform: removeItems)
+                        .listRowBackground(Color.darkBackground)
+                    
+                }                .padding(.top)
+                .navigationTitle("Shot History")
+                .toolbar {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Done")
+                            .bold()
+                            .foregroundColor(Color.lightForeground)
                     }
+                    
                 }
-                .onDelete(perform: removeItems)
-            }
-            .padding(.top)
-            .navigationTitle("Shot History")
-            .toolbar {
-                Button {
-                    dismiss()
-                } label: {
-                    Text("Done")
-                }
-                
             }
         }
+        
     }
 }
 

@@ -16,6 +16,8 @@
 		A595EF3A2A6EDA6E00EA0491 /* Shot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A595EF392A6EDA6E00EA0491 /* Shot.swift */; };
 		A595EF3C2A6EDB4F00EA0491 /* Shots.swift in Sources */ = {isa = PBXBuildFile; fileRef = A595EF3B2A6EDB4F00EA0491 /* Shots.swift */; };
 		A595EF682A71839900EA0491 /* ShotHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A595EF672A71839900EA0491 /* ShotHistoryView.swift */; };
+		A595EF6A2A7231D100EA0491 /* Color-Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A595EF692A7231D100EA0491 /* Color-Theme.swift */; };
+		A595EF6E2A72B55B00EA0491 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A595EF6D2A72B55B00EA0491 /* BackgroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		A595EF392A6EDA6E00EA0491 /* Shot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shot.swift; sourceTree = "<group>"; };
 		A595EF3B2A6EDB4F00EA0491 /* Shots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shots.swift; sourceTree = "<group>"; };
 		A595EF672A71839900EA0491 /* ShotHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotHistoryView.swift; sourceTree = "<group>"; };
+		A595EF692A7231D100EA0491 /* Color-Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Theme.swift"; sourceTree = "<group>"; };
+		A595EF6D2A72B55B00EA0491 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,9 +69,11 @@
 				A595EF372A6ED9D300EA0491 /* LocationRequestView.swift */,
 				A595EF272A6ED7BE00EA0491 /* ContentView.swift */,
 				A595EF672A71839900EA0491 /* ShotHistoryView.swift */,
+				A595EF6D2A72B55B00EA0491 /* BackgroundView.swift */,
 				A595EF392A6EDA6E00EA0491 /* Shot.swift */,
 				A595EF3B2A6EDB4F00EA0491 /* Shots.swift */,
 				A595EF332A6ED7D700EA0491 /* LocationManager.swift */,
+				A595EF692A7231D100EA0491 /* Color-Theme.swift */,
 				A595EF292A6ED7BE00EA0491 /* Assets.xcassets */,
 				A595EF2B2A6ED7BE00EA0491 /* Preview Content */,
 			);
@@ -152,9 +158,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A595EF6E2A72B55B00EA0491 /* BackgroundView.swift in Sources */,
 				A595EF682A71839900EA0491 /* ShotHistoryView.swift in Sources */,
 				A595EF282A6ED7BE00EA0491 /* ContentView.swift in Sources */,
 				A595EF3C2A6EDB4F00EA0491 /* Shots.swift in Sources */,
+				A595EF6A2A7231D100EA0491 /* Color-Theme.swift in Sources */,
 				A595EF382A6ED9D300EA0491 /* LocationRequestView.swift in Sources */,
 				A595EF262A6ED7BE00EA0491 /* Sugar Caddy.swift in Sources */,
 				A595EF3A2A6EDA6E00EA0491 /* Shot.swift in Sources */,

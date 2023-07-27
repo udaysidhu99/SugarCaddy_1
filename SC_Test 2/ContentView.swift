@@ -94,81 +94,95 @@ struct ContentView: View {
     }
     var body: some View {
         NavigationView{
-            VStack{
-                if locationManager.userLocation == nil{
-                    LocationRequestView()
-                }
-                else{
-                    VStack{
-                        VStack(spacing: 0){
-                            Text(displayAverage == 0.0 ? " ":"Average for \(clubDisplayName): \(displayAverage, specifier: "%.2f") yd").font(.headline)
-                            Picker("Club Selection", selection: $club){
-                                ForEach(clubs, id: \.self){club in
-                                    Text(club)
+            ZStack{
+                Color.darkBackground.ignoresSafeArea()
+                    if locationManager.userLocation == nil{
+                        LocationRequestView()
+                    }
+                    else{
+                        VStack{
+                            Image("SugarCaddyLogo").resizable().scaledToFit().frame(width: 200).padding(.bottom)
+                            VStack(spacing: 0){
+                                Picker("Club Selection", selection: $club){
+                                    ForEach(clubs, id: \.self){club in
+                                        Text(club).foregroundColor(.whiteForeground)
+                                    }
                                 }
+                                Text(displayAverage == 0.0 ? " ":"\(clubDisplayName) Average: \(displayAverage, specifier: "%.1f") yd")
+                                    .font(.headline).foregroundColor(.whiteForeground)
+                                    .padding(.bottom)
                             }
-                        }
-                        .pickerStyle(.wheel)
-                        .onChange(of: club) { newValue in
-                            getAvg(parClub: club)
-                        }
-                        
-                        if let currShot = shots.shots.first{
-                            
-                            VStack{
-                                Text("Shot Distance: ")
-                                if !isPressed{
-                                    Text("\(currShot.distance, specifier: "%.2f") yards")
-                                        .font(.system(size: 44))
-                                }
-                                else{
-                                    Text("In progress...")
-                                        .font(.system(size: 44))
-                                }
-                                Text(currShot.endLat != 0.0 ? "Club used: \(currShot.club)" : "  ")
-                            }
-                        }
-                        else{
-                            Text("Last Shot Distance: ")
-                            Text("\(0, specifier: "%.2f") m")
-                                .font(.system(size: 44))
-                        }
-                        
-                        Button {
-                            if !isPressed{
-                                addShot()
-                                setStartLoc()
-                            }
-                            else{
-                                setEndLoc()
+                            .pickerStyle(.wheel)
+                            .onChange(of: club) { newValue in
                                 getAvg(parClub: club)
                             }
-                            isPressed.toggle()
-                        } label: {
-                            Text( isPressed ? "End Shot" : "Begin Shot")
-                                .padding()
-                                .font(.headline)
-                                .foregroundColor(Color.white)
-                                .frame(width: UIScreen.main.bounds.width)
-                                .padding(.horizontal, -32)
-                                .background(Color(.systemBlue))
-                                .clipShape(Capsule())
-                        }
-                        
-                    }.toolbar {
-                        Button {
-                            isShowingHistory = true
-                        } label: {
-                            HStack{
-                                Text("History")
-                                Image(systemName: "list.bullet")
+                            
+                            if let currShot = shots.shots.first{
+                                
+                                VStack{
+                                    Text("Shot Distance: ")
+                                        .foregroundColor(.lightForeground)
+                                    if !isPressed{
+                                        HStack{
+                                            Text("\(currShot.distance, specifier: "%.1f")")
+                                                .font(.system(size: 44))
+                                            Text("yards")
+                                        }.foregroundColor(.whiteForeground)
+                                    }
+                                    else{
+                                        Text("In progress...")
+                                            .font(.system(size: 44))
+                                    }
+                                   // Text(currShot.endLat != 0.0 ? "Club used: \(currShot.club)" : "  ")
+                                }.foregroundColor(.whiteForeground)
                             }
+                            else{
+                                Text("Shot Distance: ")
+                                HStack(){
+                                    
+                                    Text("\(0, specifier: "%.1f")")
+                                        .font(.system(size: 44))
+                                    Text("yards")
+                                }.foregroundColor(.whiteForeground)
+                            }
+                            
+                            Button {
+                                if !isPressed{
+                                    addShot()
+                                    setStartLoc()
+                                }
+                                else{
+                                    setEndLoc()
+                                    getAvg(parClub: club)
+                                }
+                                isPressed.toggle()
+                            } label: {
+                                Text( isPressed ? "End Shot" : "Begin Shot")
+                                    .padding()
+                                    .foregroundColor(.whiteForeground)
+                                    .font(.headline)
+                                    .frame(width: UIScreen.main.bounds.width)
+                                    .padding(.horizontal, -32)
+                                    .background(.lightForeground)
+                                    .clipShape(Capsule())
+                            }
+                            
+                        }.toolbar {
+                            Button {
+                                isShowingHistory = true
+                            } label: {
+                                HStack{
+                                    //Text("History")
+                                    Image(systemName: "list.bullet")
+                                }.foregroundColor(.lightForeground)
+                            }
+                            
                         }
                         
                     }
-                }
+                    
                 
-            }
+            }.preferredColorScheme(.dark)
             
             .sheet(isPresented: $isShowingHistory, onDismiss: {
                 getAvg(parClub: club)
