@@ -14,15 +14,16 @@ struct ShotHistoryView: View {
         shots.shots.remove(atOffsets: offsets)
     }
     var body: some View {
-       
-            NavigationView {
-                ZStack{
-                           Color.darkBackground.ignoresSafeArea()
+        
+        NavigationView {
+            ZStack{
+                Color.darkBackground.ignoresSafeArea()
+                
                 List{
                     ForEach(shots.shots){shot in
                         HStack{
                             VStack(alignment: .leading){
-                                Text("Club: \(shot.clubDisplayName)").bold()
+                                Text("Club: \(shot.club)").bold()
                                 Text("Distance \(shot.distance, specifier: "%.2f" )")
                             }
                             Spacer()
@@ -36,17 +37,17 @@ struct ShotHistoryView: View {
                         .listRowBackground(Color.darkBackground)
                     
                 }                .padding(.top)
-                .navigationTitle("Shot History")
-                .toolbar {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Text("Done")
-                            .bold()
-                            .foregroundColor(Color.lightForeground)
+                    .navigationTitle("Shot History")
+                    .toolbar {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Text("Done")
+                                .bold()
+                                .foregroundColor(Color.lightForeground)
+                        }
+                        
                     }
-                    
-                }
             }
         }
         

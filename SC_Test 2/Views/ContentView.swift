@@ -13,41 +13,11 @@ struct ContentView: View {
     @StateObject var shots = Shots()
     @ObservedObject var locationManager = LocationManager.shared
     @State private var isPressed = false
-    @State private var club = "1W"
+    @State private var club = "Driver"
     @State private var showingAlert = false
-    var clubDisplayName: String{
-        switch club{
-        case "1W":
-            return "Driver"
-        case "2W":
-            return "2 Wood"
-        case "3W":
-            return "3 Wood"
-        case "3":
-            return "3 Iron"
-        case "4":
-            return "4 Iron"
-        case "5":
-            return "5 Iron"
-        case "6":
-            return "6 Iron"
-        case "7":
-            return "7 Iron"
-        case "8":
-            return "8 Iron"
-        case "9":
-            return "9 Iron"
-        case "PW":
-            return "PW"
-        case "SW":
-            return "SW"
-        default:
-            return " "
-        }
-    }
     @State var displayAverage = 0.0
     @State var isShowingHistory = false
-    let clubs = ["1W","2W","3W","3","4","5","6","7","8","9","PW","SW"]
+    let clubs = ["Driver","2 Wood","3 Wood","3 Iron","4 Iron","5 Iron","6 Iron","7 Iron","8 Iron","9 Iron","PW","SW"]
     func getLocation() -> CLLocation{
         if let location = locationManager.userLocation{
             return location
@@ -114,7 +84,7 @@ struct ContentView: View {
                                     Text(club).foregroundColor(.whiteForeground)
                                 }
                             }
-                            Text(displayAverage == 0.0 ? "\(clubDisplayName) Average: N/A":"\(clubDisplayName) Average: \(displayAverage, specifier: "%.1f") yd")
+                            Text(displayAverage == 0.0 ? "\(club) Average: N/A":"\(club) Average: \(displayAverage, specifier: "%.1f") yd")
                                 .foregroundColor(.whiteForeground)
                                 .padding(.top,70)
                                 .padding(.bottom)
@@ -191,15 +161,6 @@ struct ContentView: View {
                                 }.foregroundColor(.lightForeground)
                             }
                         }
-                        //                            ToolbarItem(placement: .navigationBarLeading) {
-                        //                                Button {
-                        //                                    isShowingPrefs = true
-                        //                                } label: {
-                        //                                    Image(systemName: "gearshape")
-                        //                                        .foregroundColor(.lightForeground)
-                        //                                }
-                        //
-                        //                            }
                         
                     }
                 }
