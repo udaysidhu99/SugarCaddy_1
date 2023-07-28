@@ -18,6 +18,9 @@
 		A595EF682A71839900EA0491 /* ShotHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A595EF672A71839900EA0491 /* ShotHistoryView.swift */; };
 		A595EF6A2A7231D100EA0491 /* Color-Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A595EF692A7231D100EA0491 /* Color-Theme.swift */; };
 		A595EF6E2A72B55B00EA0491 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A595EF6D2A72B55B00EA0491 /* BackgroundView.swift */; };
+		A595EF712A72D1CA00EA0491 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A595EF702A72D1CA00EA0491 /* SplashScreenView.swift */; };
+		A595EF732A72D95D00EA0491 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A595EF722A72D95D00EA0491 /* Launch Screen.storyboard */; };
+		A595EF792A72ED7700EA0491 /* Launch Screen Blank.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A595EF782A72ED7700EA0491 /* Launch Screen Blank.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +36,9 @@
 		A595EF672A71839900EA0491 /* ShotHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotHistoryView.swift; sourceTree = "<group>"; };
 		A595EF692A7231D100EA0491 /* Color-Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Theme.swift"; sourceTree = "<group>"; };
 		A595EF6D2A72B55B00EA0491 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		A595EF702A72D1CA00EA0491 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		A595EF722A72D95D00EA0491 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		A595EF782A72ED7700EA0491 /* Launch Screen Blank.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen Blank.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,10 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				A595EF252A6ED7BE00EA0491 /* Sugar Caddy.swift */,
-				A595EF372A6ED9D300EA0491 /* LocationRequestView.swift */,
-				A595EF272A6ED7BE00EA0491 /* ContentView.swift */,
-				A595EF672A71839900EA0491 /* ShotHistoryView.swift */,
-				A595EF6D2A72B55B00EA0491 /* BackgroundView.swift */,
+				A595EF6F2A72D07900EA0491 /* Views */,
 				A595EF392A6EDA6E00EA0491 /* Shot.swift */,
 				A595EF3B2A6EDB4F00EA0491 /* Shots.swift */,
 				A595EF332A6ED7D700EA0491 /* LocationManager.swift */,
@@ -86,6 +89,20 @@
 				A595EF2C2A6ED7BE00EA0491 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A595EF6F2A72D07900EA0491 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A595EF702A72D1CA00EA0491 /* SplashScreenView.swift */,
+				A595EF372A6ED9D300EA0491 /* LocationRequestView.swift */,
+				A595EF272A6ED7BE00EA0491 /* ContentView.swift */,
+				A595EF722A72D95D00EA0491 /* Launch Screen.storyboard */,
+				A595EF782A72ED7700EA0491 /* Launch Screen Blank.storyboard */,
+				A595EF672A71839900EA0491 /* ShotHistoryView.swift */,
+				A595EF6D2A72B55B00EA0491 /* BackgroundView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +163,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A595EF792A72ED7700EA0491 /* Launch Screen Blank.storyboard in Resources */,
+				A595EF732A72D95D00EA0491 /* Launch Screen.storyboard in Resources */,
 				A595EF2D2A6ED7BE00EA0491 /* Preview Assets.xcassets in Resources */,
 				A595EF2A2A6ED7BE00EA0491 /* Assets.xcassets in Resources */,
 			);
@@ -165,6 +184,7 @@
 				A595EF6A2A7231D100EA0491 /* Color-Theme.swift in Sources */,
 				A595EF382A6ED9D300EA0491 /* LocationRequestView.swift in Sources */,
 				A595EF262A6ED7BE00EA0491 /* Sugar Caddy.swift in Sources */,
+				A595EF712A72D1CA00EA0491 /* SplashScreenView.swift in Sources */,
 				A595EF3A2A6EDA6E00EA0491 /* Shot.swift in Sources */,
 				A595EF342A6ED7D700EA0491 /* LocationManager.swift in Sources */,
 			);
@@ -300,13 +320,17 @@
 				DEVELOPMENT_TEAM = NAG9CHUC6L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Sugar Caddy";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen Blank.storyboard";
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -334,13 +358,17 @@
 				DEVELOPMENT_TEAM = NAG9CHUC6L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Sugar Caddy";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen Blank.storyboard";
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

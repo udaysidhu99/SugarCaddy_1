@@ -46,6 +46,7 @@ struct ContentView: View {
     }
     @State var displayAverage = 0.0
     @State var isShowingHistory = false
+    @State var isShowingPrefs = false
     let clubs = ["1W","2W","3W","3","4","5","6","7","8","9","PW","SW"]
     func getLocation() -> CLLocation{
         if let location = locationManager.userLocation{
@@ -109,8 +110,8 @@ struct ContentView: View {
                                         Text(club).foregroundColor(.whiteForeground)
                                     }
                                 }
-                                Text(displayAverage == 0.0 ? "Average: N/A":"\(clubDisplayName) Average: \(displayAverage, specifier: "%.1f") yd")
-                                    .font(.headline).foregroundColor(.whiteForeground)
+                                Text(displayAverage == 0.0 ? "\(clubDisplayName) Average: N/A":"\(clubDisplayName) Average: \(displayAverage, specifier: "%.1f") yd")
+                                    .foregroundColor(.whiteForeground)
                                     .padding(.top,70)
                                     .padding(.bottom)
                             }
@@ -123,12 +124,15 @@ struct ContentView: View {
                                 
                                 VStack{
                                     Text("Shot Distance: ")
+                                        .font(.headline)
                                         .foregroundColor(.lightForeground).padding(.bottom, 5)
                                     if !isPressed{
-                                        HStack{
-                                            Text("\(currShot.distance, specifier: "%.1f")")
+                                        HStack(alignment: .bottom){
+                                            Text("**\(currShot.distance, specifier: "%.1f")**")
                                                 .font(.system(size: 44))
                                             Text("yards")
+                                                .font(.footnote)
+                                                .offset(y:-10)
                                         }.foregroundColor(.whiteForeground)
                                     }
                                     else{
@@ -140,11 +144,13 @@ struct ContentView: View {
                             }
                             else{
                                 Text("Shot Distance: ").padding(.bottom,5)
-                                HStack(){
-                                    
-                                    Text("\(0, specifier: "%.1f")")
+                                HStack(alignment: .bottom){
+                                    Text("**\(0, specifier: "%.1f")**")
+                                        .bold()
                                         .font(.system(size: 44))
                                     Text("yards")
+                                        .font(.footnote)
+                                        .offset(y:-10)
                                 }.foregroundColor(.whiteForeground)
                             }
                             
@@ -169,19 +175,35 @@ struct ContentView: View {
                                     .clipShape(Capsule())
                             }.padding(.bottom, 20)
                             
-                        }.toolbar {
-                            Button {
-                                isShowingHistory = true
-                            } label: {
-                                HStack{
-                                    //Text("History")
-                                    Image(systemName: "list.bullet")
-                                }.foregroundColor(.lightForeground)
+                        }
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarTrailing){
+                                Button {
+                                    isShowingHistory = true
+                                } label: {
+                                    HStack{
+                                        //Text("History")
+                                        Image(systemName: "list.bullet")
+                                    }.foregroundColor(.lightForeground)
+                                }
                             }
-                            
+//                            ToolbarItem(placement: .navigationBarLeading) {
+//                                Button {
+//                                    isShowingPrefs = true
+//                                } label: {
+//                                    Image(systemName: "gearshape")
+//                                        .foregroundColor(.lightForeground)
+//                                }
+//
+//                            }
+                                
+                            }
                         }
                         
                     }
+            .onAppear{
+                getAvg(parClub: club)
+            }
                     
                 
             }.preferredColorScheme(.dark)
@@ -191,10 +213,13 @@ struct ContentView: View {
             }, content: {
                 ShotHistoryView(shots: shots)
             })
+            .sheet(isPresented: $isShowingPrefs) {
+                ShotHistoryView(shots: shots)
+            }
         }
     }
     
-}
+
 
 
 
