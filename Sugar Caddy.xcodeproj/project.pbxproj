@@ -97,9 +97,9 @@
 				A595EF702A72D1CA00EA0491 /* SplashScreenView.swift */,
 				A595EF372A6ED9D300EA0491 /* LocationRequestView.swift */,
 				A595EF272A6ED7BE00EA0491 /* ContentView.swift */,
+				A595EF672A71839900EA0491 /* ShotHistoryView.swift */,
 				A595EF722A72D95D00EA0491 /* Launch Screen.storyboard */,
 				A595EF782A72ED7700EA0491 /* Launch Screen Blank.storyboard */,
-				A595EF672A71839900EA0491 /* ShotHistoryView.swift */,
 				A595EF6D2A72B55B00EA0491 /* BackgroundView.swift */,
 			);
 			path = Views;

@@ -76,7 +76,6 @@ struct ContentView: View {
                 }
                 else{
                     VStack{
-                        
                         Image("SugarCaddyLogo").resizable().scaledToFit().frame(width: 200).padding(.bottom)
                         VStack(spacing: 0){
                             Picker("Club Selection", selection: $club){
@@ -179,7 +178,7 @@ struct ContentView: View {
                 ShotHistoryView(shots: shots)
             })
             .alert(isPresented: $showingAlert) {
-                Alert(title: Text("Shot Not Recorded"), message: Text("Unrealistically low yardate recorded"), dismissButton: .default(Text("Dismiss")))
+                Alert(title: Text("Shot Not Recorded"), message: Text("Unrealistically low distance"), dismissButton: .default(Text("Dismiss")))
             }
     }
     
