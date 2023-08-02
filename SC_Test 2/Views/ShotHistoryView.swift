@@ -22,7 +22,7 @@ struct ShotHistoryView: View {
             ZStack{
                 Color.darkBackground.ignoresSafeArea()
                 VStack(alignment: .leading){
-                    Picker("Club filter", selection: $selectedClub) {
+                    Picker("Club filter", selection: $selectedClub.animation()) {
                         ForEach(clubs, id: \.self){club in
                             Text(club).foregroundColor(.whiteForeground)
                         }

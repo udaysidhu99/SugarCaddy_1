@@ -19,7 +19,6 @@
 		A595EF6A2A7231D100EA0491 /* Color-Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A595EF692A7231D100EA0491 /* Color-Theme.swift */; };
 		A595EF6E2A72B55B00EA0491 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A595EF6D2A72B55B00EA0491 /* BackgroundView.swift */; };
 		A595EF712A72D1CA00EA0491 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A595EF702A72D1CA00EA0491 /* SplashScreenView.swift */; };
-		A595EF732A72D95D00EA0491 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A595EF722A72D95D00EA0491 /* Launch Screen.storyboard */; };
 		A595EF792A72ED7700EA0491 /* Launch Screen Blank.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A595EF782A72ED7700EA0491 /* Launch Screen Blank.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +36,6 @@
 		A595EF692A7231D100EA0491 /* Color-Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Theme.swift"; sourceTree = "<group>"; };
 		A595EF6D2A72B55B00EA0491 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		A595EF702A72D1CA00EA0491 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
-		A595EF722A72D95D00EA0491 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A595EF782A72ED7700EA0491 /* Launch Screen Blank.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen Blank.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,7 +96,6 @@
 				A595EF372A6ED9D300EA0491 /* LocationRequestView.swift */,
 				A595EF272A6ED7BE00EA0491 /* ContentView.swift */,
 				A595EF672A71839900EA0491 /* ShotHistoryView.swift */,
-				A595EF722A72D95D00EA0491 /* Launch Screen.storyboard */,
 				A595EF782A72ED7700EA0491 /* Launch Screen Blank.storyboard */,
 				A595EF6D2A72B55B00EA0491 /* BackgroundView.swift */,
 			);
@@ -164,7 +161,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A595EF792A72ED7700EA0491 /* Launch Screen Blank.storyboard in Resources */,
-				A595EF732A72D95D00EA0491 /* Launch Screen.storyboard in Resources */,
 				A595EF2D2A6ED7BE00EA0491 /* Preview Assets.xcassets in Resources */,
 				A595EF2A2A6ED7BE00EA0491 /* Assets.xcassets in Resources */,
 			);
